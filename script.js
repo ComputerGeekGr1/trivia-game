@@ -179,6 +179,19 @@
     // ======================================================
     function loadProgress() {
         // TODO: implement robust load:
+
+        var data = localStorage.getItem(STORAGE_KEY);
+        if (data) {
+            try {
+                var parsed = JSON.parse(data);
+                if (typeof parsed === "object" && parsed !== null) {
+                    return parsed;
+                }
+            } catch (e) {
+                console.error("Stored data error:", e);
+            }
+        }
+
         // - Return default { bestScore: 0, bestTotal: 0, attempts: 0 } if missing/invalid
         return { bestScore: 0, bestTotal: 0, attempts: 0 };
     }
@@ -188,6 +201,7 @@
     // ======================================================
     function saveProgress(obj) {
         // TODO: JSON.stringify + localStorage.setItem(STORAGE_KEY, ...)
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
     }
 
     // ======================================================
@@ -200,7 +214,16 @@
         // - var data = await res.json()
         // - if (!data.token) throw Error(...)
         // - return data.token
-        return null;
+
+        var res = await fetch(API.token);
+        if (!res.ok) {
+            throw Error("Failed to fetch token");
+        }
+        var data = await res.json();
+        if (!data.token) {
+            throw Error("Invalid token received");
+        }
+        return data.token;
     }
 
     // ======================================================
@@ -214,6 +237,21 @@
         //   0 -> return results
         //   5 -> throw rate limit error
         //   else -> throw generic error
+
+        var url = API.questionsUrl(cfg.amount, cfg.difficulty, state.player.category, state.token);
+        var res = await fetch(url);
+        if (!res.ok) {
+            throw Error("Failed to fetch questions");
+        }
+        var data = await res.json();
+        if (data.response_code === 0) {
+            return data.results;
+        } else if (data.response_code === 5) {
+            throw Error("Rate limit exceeded");
+        } else {
+            throw Error("Failed to fetch questions");
+        }
+
         return [];
     }
 

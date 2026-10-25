@@ -159,13 +159,13 @@
         errEmail.textContent = "";
 
         // - Name: 2–30 characters after trim()
-        if (state.player.name.length < 2 || state.player.name.length > 30) {
+        if (nameInput.value.length < 2 || nameInput.value.length > 30) {
             errName.textContent = "Name must be between 2 and 30 characters";
             return false;
         }
         // - Email: basic valid shape (example: a@b.com)
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(state.player.email)) {
+        if (!emailRegex.test(emailInput.value)) {
             errEmail.textContent = "Please enter a valid email address";
             return false;
         }

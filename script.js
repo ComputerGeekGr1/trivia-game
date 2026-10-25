@@ -376,7 +376,7 @@
 
             var yourAns = qq.userChoice;
             var ok = (yourAns === qq.correct);
-            lines.push("(" + (ok ? "✓" : "✗") + ")" +     "Your answer: " + yourAns );
+            lines.push("(" + (ok ? "✓" : "✗") + ")" +"     Your answer: " + yourAns );
 
             lines.push("");
         }
@@ -413,7 +413,6 @@
         // The dropdown provides: "easy", "medium", or "hard"
 
         ROUND.difficulty = state.player.mode;
-        console.log("Selected difficulty:", ROUND.difficulty);
 
 
         beginRound();

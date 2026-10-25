@@ -6,11 +6,27 @@
       - You may customize colors, fonts, and button styles.
 ========================================================= */
 
+:root {
+    --background-color: #f5f0fa;
+    --section-background: #ffffff;
+    --primary-color: #b39ddb;
+    --primary-hover: #9575cd;
+    --accent-color: #d8c9f0;
+    --text-color: #3f3455;
+    --border-color: #d8cde5;
+    --input-focus: #fffae0;
+    --error-color: #c62828;
+    --error-background: #fff0f0;
+    --selected-background: #c5b3e6;
+    --shadow-color: rgba(92, 65, 130, 0.12);
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: #0b1220;
-  color: #eef2ff;
+  background: #EEAECA;
+  background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+  color: var(--text-color);
 }
 
 main {
@@ -20,8 +36,8 @@ main {
 }
 
 .card {
-  background: #121b2e;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: var(--section-background);
+  border: 1px solid var(--border-color);
   border-radius: 14px;
   padding: 16px;
   margin-bottom: 14px;
@@ -38,9 +54,9 @@ select {
   width: 100%;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: #0f172a;
-  color: #eef2ff;
+  border: 1px solid var(--border-color);
+  background: var(--section-background);
+  color: var(--text-color);
 }
 
 input {
@@ -56,18 +72,26 @@ button {
 }
 
 button.primary {
-  background: #2563eb;
+  background: #aa3ffb;
+  background: linear-gradient(132deg, rgba(170, 63, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
   color: white;
 }
 
 button.secondary {
-  background: rgba(255, 255, 255, 0.10);
+  background: #aa3ffb;
+  background: linear-gradient(132deg, rgba(170, 63, 251, 0.69) 0%, rgba(252, 70, 107, 0.65) 100%);
   color: white;
 }
 
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  background: var(--accent-color);
+}
+
+button:hover {
+  opacity: 0.9;
+  box-shadow: 0 6px 6px var(--shadow-color);
 }
 
 .row {
@@ -83,7 +107,7 @@ button:disabled {
 }
 
 .err {
-  color: #fb7185;
+  color: var(--error-color);
   min-height: 18px;
   font-size: 0.9rem;
 }
@@ -92,8 +116,8 @@ button:disabled {
   display: inline-block;
   padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
 }
 
 .hidden {
@@ -103,8 +127,8 @@ button:disabled {
 .notice {
   padding: 10px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+  background: var(--section-background);
 }
 
 .choices {
@@ -116,13 +140,13 @@ button:disabled {
 .choiceBtn {
   text-align: left;
   width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #eef2ff;
+  background: var(--section-background);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
 }
 
 .choiceBtn:hover {
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: var(--border-color);
 }
 
 .topbar {

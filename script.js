@@ -319,6 +319,8 @@
     function handleAnswer(choiceText) {
         var q = state.questions[state.idx];
 
+        console.log("User chose:", choiceText, "Correct answer:", q.correct);
+
         // --------------------------------------------
         // Task E (Answer Review) — PARTIAL PROVIDED
         // --------------------------------------------
@@ -329,6 +331,9 @@
         if (choiceText === q.correct) {
             state.score = state.score + 1;
             scoreEl.textContent = String(state.score);
+            q.userChoice = choiceText;
+        } else {
+            q.userChoice = choiceText;
         }
 
         state.idx = state.idx + 1;
@@ -369,6 +374,10 @@
             //  ok = (yourAns === qq.correct)
             //  use lines.push to show ✓ or ✗
 
+            var yourAns = qq.userChoice;
+            var ok = (yourAns === qq.correct);
+            lines.push("(" + (ok ? "✓" : "✗") + ")" +     "Your answer: " + yourAns );
+
             lines.push("");
         }
 
@@ -402,6 +411,9 @@
         // --------------------------------------------------
         // TODO : Set (ROUND.difficulty) based on the dropdown selection (state - player - mode).
         // The dropdown provides: "easy", "medium", or "hard"
+
+        ROUND.difficulty = state.player.mode;
+        console.log("Selected difficulty:", ROUND.difficulty);
 
 
         beginRound();
